@@ -1,0 +1,39 @@
+$size: 5px;
+
+.resize-border {
+    z-index: 1;
+    position: absolute;
+    transition: background-color .1s ease-out;
+
+    &__left {
+        top: 0;
+        width: $size;
+        height: 100%;
+        cursor: e-resize;
+    }
+
+    &__top {
+        left: 0;
+        height: $size;
+        width: 100%;
+        cursor: n-resize;
+    }
+
+    &__right {
+        top: 0;
+        width: $size;
+        height: 100%;
+        cursor: e-resize;
+    }
+
+    &__bottom {
+        left: 0;
+        height: $size;
+        width: 100%;
+        cursor: n-resize;
+    }
+
+    &__hovered {
+        background-color: #0078D4;
+    }
+}

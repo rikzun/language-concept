@@ -1,13 +1,43 @@
+import { Fragment } from 'react'
 import './App.style.scss'
+import Editor from '@monaco-editor/react'
+import { Panel } from '@components'
+import { useStorage } from 'src/utils/useStorage'
+import { ResizeBorder } from 'src/components'
+import * as monacoConfig from 'src/monaco'
+import { useWindowEvent } from 'src/utils/useWindowEvent'
 
 export function App() {
-    const params = Object.entries({
-        cc_load_policy: 0,
-        controls: 2,
-        fs: 0,
-        rel: 0,
-        showinfo: 0
-    }).map(([key, value]) => `${key}=${value}`).join('&')
+    const windowWidth = useStorage(document.body.clientWidth)
+    const panelWidth = useStorage(windowWidth.value * .15)
+    const code = useStorage('')
 
-    return <iframe src={'https://youtube.com/embed/BNflNL40T_M?' + params} />
+    useWindowEvent('resize', (e) => {
+        windowWidth.set(document.body.clientWidth)
+    })
+
+    return (
+        <Fragment>
+            <Panel widthStorage={panelWidth} />
+
+            <ResizeBorder.Left
+                maxValue={windowWidth.value * .8}
+                storage={panelWidth}
+            />
+
+            <div className="right" style={{width: `calc(100% - ${panelWidth.value}px)`}}>
+                <Editor
+                    loading=""
+                    theme={monacoConfig.themeName}
+                    language={monacoConfig.languageName}
+                    options={{contextmenu: false}}
+                    value={code.value}
+                    onChange={(v) => code.set(v ?? '')}
+                    beforeMount={monacoConfig.edit}
+                    width={windowWidth.value - panelWidth.value}
+                />
+                <div className="terminal"></div>
+            </div>
+        </Fragment>
+    )
 }
