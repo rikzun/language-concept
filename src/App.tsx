@@ -6,11 +6,12 @@ import { useStorage } from 'src/utils/useStorage'
 import { ResizeBorder } from 'src/components'
 import * as monacoConfig from 'src/monaco'
 import { useWindowEvent } from 'src/utils/useWindowEvent'
+import { useFileSystemContext } from 'src/contexts/FileSystemContext'
 
 export function App() {
     const windowWidth = useStorage(document.body.clientWidth)
     const panelWidth = useStorage(windowWidth.value * .15)
-    const code = useStorage('')
+    const fileContext = useFileSystemContext()
 
     useWindowEvent('resize', (e) => {
         windowWidth.set(document.body.clientWidth)
@@ -31,8 +32,8 @@ export function App() {
                     theme={monacoConfig.themeName}
                     language={monacoConfig.languageName}
                     options={{contextmenu: false}}
-                    value={code.value}
-                    onChange={(v) => code.set(v ?? '')}
+                    value={fileContext.contentCurrent() ?? ''}
+                    onChange={(v) => fileContext.inputCurrent(v ?? '')}
                     beforeMount={monacoConfig.edit}
                     width={windowWidth.value - panelWidth.value}
                 />

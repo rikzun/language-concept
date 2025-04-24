@@ -26,9 +26,12 @@ export function ContextMenu(props: ContextMenuProps) {
                     }
 
                     return (
-                        <div className="context_menu__element" onClick={onClick}>
-                            {option.label}
-                        </div>
+                        <div
+                            key={option.label}
+                            className="context_menu__element"
+                            onClick={onClick}
+                            children={option.label}
+                        />
                     )
                 })}
             </div>

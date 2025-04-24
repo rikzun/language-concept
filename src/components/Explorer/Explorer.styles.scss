@@ -17,6 +17,17 @@
         height: 22px;
     }
 
+    > input {
+        outline: unset;
+        color: #CCCCCC;
+        border: 1px solid #0078D4;
+        background-color: #313131;
+        width: 100%;
+        height: calc(100% - 4px);
+        border-radius: 2px;
+        font-size: 13px;
+    }
+
     &:hover {
         background-color: #2A2D2E;
     }
