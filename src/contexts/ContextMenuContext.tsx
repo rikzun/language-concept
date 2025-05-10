@@ -1,7 +1,7 @@
 import { ContextMenu } from '@components'
-import { createContext, useContext } from 'react';
-import { useStorage, Storage } from 'src/utils'
-import { Children, ContextEvent } from 'src/utils/types'
+import { createContext, useContext } from 'react'
+import { useStorage, Storage } from '@utils/hooks'
+import { Children, ContextEvent } from '@utils'
 
 class ContextMenuHandler {
     storage: Storage<ContextMenuData>

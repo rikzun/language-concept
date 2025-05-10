@@ -1,3 +1,2 @@
-export * from './useDocumentEvent'
-export * from './useStorage'
+export * from './types'
 export * from './utils'

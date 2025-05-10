@@ -1,4 +1,4 @@
-import { ContextMenuData } from 'src/contexts/ContextMenuContext'
+import { ContextMenuData } from '@contexts'
 import { Fragment } from 'react/jsx-runtime'
 import './ContextMenu.styles.scss'
 

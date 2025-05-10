@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
-import { useStorage, StorageDispatcher } from 'src/utils'
-import { Children } from 'src/utils/types'
+import { useStorage, StorageDispatcher } from '@utils/hooks'
+import { Children } from '@utils'
 
 export class FileSystemContextHandler {
     readonly fs: FileItem[]

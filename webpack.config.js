@@ -44,7 +44,9 @@ module.exports = () => {
             modules: [__dirname, 'node_modules'],
             alias: {
                 '@assets': path.resolve(__dirname, 'src/assets'),
-                '@components': path.resolve(__dirname, 'src/components')
+                '@contexts': path.resolve(__dirname, 'src/contexts'),
+                '@components': path.resolve(__dirname, 'src/components'),
+                '@utils': path.resolve(__dirname, 'src/utils')
             }
         },
         devServer: {

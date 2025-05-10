@@ -5,28 +5,14 @@ $size: 5px;
     position: absolute;
     transition: background-color .1s ease-out;
 
-    &__left {
+    &__vertical {
         top: 0;
         width: $size;
         height: 100%;
         cursor: e-resize;
     }
 
-    &__top {
-        left: 0;
-        height: $size;
-        width: 100%;
-        cursor: n-resize;
-    }
-
-    &__right {
-        top: 0;
-        width: $size;
-        height: 100%;
-        cursor: e-resize;
-    }
-
-    &__bottom {
+    &__horizontal {
         left: 0;
         height: $size;
         width: 100%;

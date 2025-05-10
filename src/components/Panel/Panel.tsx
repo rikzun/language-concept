@@ -1,14 +1,13 @@
-import { Explorer } from 'src/components'
 import './Panel.styles.scss'
-import { Storage } from "src/utils/useStorage"
+import { Explorer } from '@components'
 
 interface PanelProps {
-    widthStorage: Storage<number>
+    width: number
 }
 
 export function Panel(props: PanelProps) {
     return (
-        <div className="panel" style={{ width: props.widthStorage.value + 'px' }}>
+        <div className="panel" style={{ width: props.width + 'px' }}>
             <Explorer />
             <div className="tasks"></div>
         </div>

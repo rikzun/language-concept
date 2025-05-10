@@ -1,27 +1,25 @@
 import { Fragment } from 'react'
 import './App.style.scss'
 import Editor from '@monaco-editor/react'
-import { Panel } from '@components'
-import { useStorage } from 'src/utils/useStorage'
-import { ResizeBorder } from 'src/components'
-import * as monacoConfig from 'src/monaco'
-import { useWindowEvent } from 'src/utils/useWindowEvent'
-import { useFileSystemContext } from 'src/contexts/FileSystemContext'
+import { Panel, ResizeBorder } from '@components'
+import { useStorage, useWindowEvent } from '@utils/hooks'
+import * as monacoConfig from './monaco'
+import { useFileSystemContext } from '@contexts'
 
 export function App() {
     const windowWidth = useStorage(document.body.clientWidth)
     const panelWidth = useStorage(windowWidth.value * .15)
     const fileContext = useFileSystemContext()
 
-    useWindowEvent('resize', (e) => {
+    useWindowEvent('resize', () => {
         windowWidth.set(document.body.clientWidth)
     })
 
     return (
         <Fragment>
-            <Panel widthStorage={panelWidth} />
+            <Panel width={panelWidth.value} />
 
-            <ResizeBorder.Left
+            <ResizeBorder.Vertical
                 maxValue={windowWidth.value * .8}
                 storage={panelWidth}
             />

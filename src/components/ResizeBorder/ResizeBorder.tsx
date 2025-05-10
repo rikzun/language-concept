@@ -1,8 +1,9 @@
-import { Storage, clamp, useDocumentEvent, useStorage } from 'src/utils'
-import { ClassName } from 'src/utils/components'
+import { Storage, useDocumentEvent, useStorage } from '@utils/hooks'
+import { ClassName } from '@utils/components'
 import './ResizeBorder.styles.scss'
+import { clamp } from '@utils'
 
-type ResizeBorderAnchor = "left" | "top" | "right" | "bottom"
+type ResizeBorderAnchor = "vertical" | "horizontal"
 
 interface ResizeBorderProps {
     maxValue?: number
@@ -10,10 +11,8 @@ interface ResizeBorderProps {
 }
 
 export namespace ResizeBorder {
-    export function Left(props: ResizeBorderProps) { return component("left", props.storage, props.maxValue) }
-    export function Top(props: ResizeBorderProps) { return component("top", props.storage, props.maxValue) }
-    export function Right(props: ResizeBorderProps) { return component("right", props.storage, props.maxValue) }
-    export function Bottom(props: ResizeBorderProps) { return component("bottom", props.storage, props.maxValue) }
+    export function Vertical(props: ResizeBorderProps) { return component("vertical", props.storage, props.maxValue) }
+    export function Horizontal(props: ResizeBorderProps) { return component("horizontal", props.storage, props.maxValue) }
 
     function component(anchor: ResizeBorderAnchor, storage: Storage<number>, maxValue?: number) {
         const hovered = useStorage(false)
@@ -22,7 +21,7 @@ export namespace ResizeBorder {
         useDocumentEvent('mousemove', (e) => {
             if (!pressed.value) return
 
-            const value = anchor == "left" || anchor == "right"
+            const value = anchor == "vertical"
                 ? e.pageX
                 : e.pageY
             
@@ -37,7 +36,7 @@ export namespace ResizeBorder {
         })
 
         return (
-            <ClassName class={(hovered.value || pressed.value) && "resize-border__hovered"}>
+            <ClassName resize-border__hovered={hovered.value || pressed.value}>
                 <div
                     className={`resize-border noselect resize-border__${anchor}`}
                     style={{left: (storage.value - 3) + 'px'}}

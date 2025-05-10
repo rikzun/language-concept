@@ -1,8 +1,7 @@
-import { ContextMenuOption, useContextMenuContext } from 'src/contexts/ContextMenuContext'
-import { FileItem, FileSystemContextHandler, useFileSystemContext } from "src/contexts/FileSystemContext"
 import './Explorer.styles.scss'
-import { ContextEvent } from 'src/utils/types'
-import { useStorage } from 'src/utils'
+import { ContextMenuOption, useContextMenuContext, FileItem, FileSystemContextHandler, useFileSystemContext } from '@contexts'
+import { ContextEvent } from '@utils/types'
+import { useStorage } from '@utils/hooks'
 import { ChangeEvent, KeyboardEvent } from 'react'
 
 export function Explorer() {
